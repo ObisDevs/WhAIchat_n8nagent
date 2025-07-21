@@ -73,9 +73,173 @@ Follow these steps to get your own bot running in minutes.
 -   A server or computer to run the bot 24/7 (A cheap VPS from DigitalOcean, Vultr, or Hostinger is perfect)
 -   A dedicated WhatsApp account for the bot.
 
-### Step 1: Clone the Repository
+### 📝 Step 1: Clone the Repository
 
 First, get the code onto your machine or server.
+
 ```bash
-git clone https://github.com/your-username/your-repository-name.git
+git clone https://github.com/ObisDevs/WhAIchat_n8nagent.git
 cd your-repository-name
+```
+
+---
+
+### 🚀 Step 2: Install Dependencies (Manual Setup)
+
+Here’s how to set up the environment manually, exactly as done in the terminal. Errors and warnings are included where relevant for transparency.
+
+```bash
+# Check Node and NPM versions
+node -v
+npm -v
+# v22.14.0
+# 10.9.2
+
+# Navigate to Desktop and create project folder
+cd Desktop
+mkdir my-venom-bot
+cd my-venom-bot
+
+# Initialize the project
+npm init -y
+
+# Install Venom Bot
+npm install venom-bot
+
+# Warnings during installation:
+# npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory...
+# npm WARN deprecated read-package-json@6.0.4...
+# ...
+# 8 vulnerabilities (2 moderate, 6 high)
+
+# Install Axios
+npm install axios
+# Still 8 vulnerabilities remain
+
+# Install Dotenv
+npm install dotenv
+
+# Create project files
+touch bot.js
+touch .env
+touch .gitignore
+
+# Install dependencies again to ensure all packages are fetched
+npm install
+
+# Audit fix with force (optional, not always recommended)
+npm audit fix --force
+
+# This produced warnings and deprecated messages:
+# npm WARN audit Updating venom-bot to 4.2.1...
+# npm WARN deprecated sharp@<0.32.6...
+# 8 high severity vulnerabilities remain
+```
+
+---
+
+### ⚙️ Step 3: Configure Your Bot
+
+This is the most important step — you need to tell the bot where to send messages.
+
+1. Rename the example environment file:
+
+```bash
+mv .env.example .env
+```
+
+2. Open the `.env` file with your preferred editor:
+
+```bash
+nano .env
+```
+
+3. Update the environment variables:
+
+```ini
+# The full webhook URL from your n8n workflow's trigger node
+N8N_WEBHOOK_URL="https://your-n8n-instance.com/webhook/your-path"
+
+# A unique name for the session file that will be created
+BOT_SESSION_NAME="my-whatsapp-bot"
+```
+
+---
+
+### 🔗 Step 4: Run the Bot for the First Time
+
+You need to link your WhatsApp account by scanning a QR code.
+
+Run the bot:
+
+```bash
+node bot.js
+```
+
+A QR code will appear in the terminal. Open WhatsApp on your phone and go to:
+**Settings > Linked Devices > Link a Device**, then scan the QR code.
+
+Once scanned, the bot will be connected!
+
+Stop the bot anytime with:
+
+```bash
+Ctrl + C
+```
+
+---
+
+### 🧐 Step 5: Run in Production (24/7)
+
+To keep the bot running even after closing the terminal, use **PM2** (a process manager for Node.js).
+
+1. Install PM2 globally:
+
+```bash
+npm install pm2 -g
+```
+
+2. Start your bot with PM2:
+
+```bash
+pm2 start bot.js --name my-whatsapp-bot
+```
+
+---
+
+### 🛠️ Useful PM2 Commands
+
+* **Check bot status:**
+
+  ```bash
+  pm2 status
+  ```
+
+* **View bot logs:**
+
+  ```bash
+  pm2 logs my-whatsapp-bot
+  ```
+
+* **Restart the bot:**
+
+  ```bash
+  pm2 restart my-whatsapp-bot
+  ```
+
+* **Stop the bot:**
+
+  ```bash
+  pm2 stop my-whatsapp-bot
+  ```
+
+---
+
+### ⚖️ Disclaimer
+
+> This project is **not affiliated with, authorized, endorsed by, or in any way officially connected with WhatsApp** or any of its subsidiaries or affiliates.
+> The official WhatsApp website can be found at [https://whatsapp.com](https://whatsapp.com).
+
+>
+> **Automating personal WhatsApp accounts may violate WhatsApp’s Terms of Service.**
+> Use this tool responsibly and at your own risk. It’s recommended to use a **dedicated phone number** for the bot to avoid risking your personal account.
