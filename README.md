@@ -9,7 +9,7 @@
 
 > **Don't have n8n yet? Get started with the powerful, low-code automation platform that powers this bot.**
 >
-> **[➡️ Click here to sign up for n8n via my affiliate link!](https://n8n.partnerlinks.io/et001atzcei7 )**
+> **[➡️ Click here to sign up and get the workflow on n8n via my affiliate link!](https://n8n.partnerlinks.io/et001atzcei7 )**
 
 A powerful, reliable, and easy-to-deploy WhatsApp bot that acts as a bridge between your WhatsApp account and the limitless automation capabilities of **n8n.io**.
 
